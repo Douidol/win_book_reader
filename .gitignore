@@ -1,0 +1,13 @@
+node_modules/
+.npm-cache/
+.electron-cache/
+pylibs/
+app-data/
+__pycache__/
+*.pyc
+*.log
+
+# Build outputs and local caches
+build/
+.tmp/
+*.exe

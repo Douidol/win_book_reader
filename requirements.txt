@@ -1,0 +1,9 @@
+# 极简阅读器 - Python 依赖
+#
+# 运行依赖：无（仅使用 Python 标准库 tkinter / ctypes / json / re / pathlib / threading / sys）
+# 只要装了 Python 3.8+ 即可直接运行 main.py，无需 pip install 任何包。
+#
+# 以下仅为打包成 exe 所需的开发依赖，普通使用不需要安装。
+
+# 打包成独立 exe（仅开发时需要）
+pyinstaller>=6.0
