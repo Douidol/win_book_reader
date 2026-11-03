@@ -379,11 +379,22 @@ class ReaderApp:
         self.text.bind('<Leave>', lambda e: self.scrollbar.pack_forget())
         # 窗口布局变化时保持缩放手柄在最上层
 
-        # 沉浸模式浮动退出按钮（默认隐藏）
-        self.immersive_exit_btn = tk.Label(self.root, text='✕ 退出沉浸',
-                                           bg='#e74c3c', fg='#fff', font=self.tb_font,
-                                           padx=10, pady=4, cursor='hand2')
+        # 沉浸模式退出图标（默认隐藏）
+        self.immersive_exit_hovered = False
+        self.immersive_exit_btn = tk.Label(self.root, text='×', bg=t['bg'], fg=t['gutter_fg'],
+                                           font=('Microsoft YaHei', 18), bd=0,
+                                           padx=5, pady=2, cursor='hand2')
         self.immersive_exit_btn.bind('<Button-1>', lambda e: self.toggle_immersive())
+        self._tooltip(self.immersive_exit_btn, '退出沉浸模式（F11）')
+        self.immersive_exit_btn.bind('<Enter>', lambda e: self._set_immersive_exit_hover(True), add='+')
+        self.immersive_exit_btn.bind('<Leave>', lambda e: self._set_immersive_exit_hover(False), add='+')
+
+    def _set_immersive_exit_hover(self, hovered):
+        self.immersive_exit_hovered = hovered
+        t = THEMES[self.state['theme']]
+        bg = t['accent'] if hovered else t['bg']
+        fg = '#fff' if hovered else t['gutter_fg']
+        self.immersive_exit_btn.config(bg=bg, fg=fg)
 
     def _btn_opts(self, t):
         return dict(bg=t['tb'], fg=t['tb_fg'], font=self.tb_font, bd=0,
@@ -501,6 +512,7 @@ class ReaderApp:
         self.resize_grip.config(bg=t['bg'])
         for line in self.resize_grip_lines:
             self.resize_grip.itemconfig(line, fill=t['accent'])
+        self._set_immersive_exit_hover(self.immersive_exit_hovered)
         self.progress_lbl.config(bg=t['tb'], fg=t['tb_fg'])
         self.book_name.config(bg=t['tb'], fg=t['tb_fg'])
         self.chapter_panel.config(bg=t['tb'])
