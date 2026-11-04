@@ -34,6 +34,12 @@ Python tkinter 实现的轻量 TXT 小说阅读器，支持无边框置顶、窗
 
 需要 Python 3.8+（本机已装 3.14.3，自带 tkinter，无需 pip install 任何包）。
 
+### 下载 Windows 版
+
+[前往 GitHub Releases 下载最新 exe](https://github.com/Douidol/win_book_reader/releases/latest)，Windows 版无需单独安装 Python。
+
+此 exe 未进行代码签名，Windows 可能显示 SmartScreen 或未知发布者提示；请确认文件来自本项目 Release 后再运行。
+
 ### 双击启动
 
 直接双击 **`启动py.bat`**。
@@ -81,7 +87,7 @@ python main.py
 
 ## 打包成 exe（无需 Python 环境）
 
-仓库发布源码，不包含打包好的 exe。可按以下步骤自行生成：
+exe 通过 GitHub Release 单独发布，源码仓库不存放打包产物。也可以按以下步骤自行生成：
 
 ```bash
 # 安装打包工具（仅开发时需要）
